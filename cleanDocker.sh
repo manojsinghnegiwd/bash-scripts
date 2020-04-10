@@ -1,0 +1,6 @@
+docker kill $(docker ps -q)
+docker rm -f $(docker ps -aq)
+docker rmi -f $(docker images -q)
+docker rm -f $(docker ps -aqf status=exited)
+docker volume rm -f $(docker volume ls -qf dangling=true)
+docker rmi -f $(docker images -q -f dangling=true)
